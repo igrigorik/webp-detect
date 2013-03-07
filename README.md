@@ -5,6 +5,8 @@ A collection of configuration scripts and snippets for detecting WebP support:
 - A new request header (`WebP`) is appended to the proxied request
 - WebP header value is either "lossy", or "lossy, lossless"
 
+![WebP Detect](http://origin.igvita.com/posts/13/webp-serverside.png)
+
 Based on above, the application server can customize the HTML of the document to provide WebP optimized pages, or fallback to a different image format. Of course, you don't have to use this for just HTML customization: same logic can be adapted to dynamically serve the image assets themselves.
 
 
