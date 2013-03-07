@@ -1,4 +1,4 @@
-== WebP User-Agent detection
+# WebP User-Agent detection
 
 A collection of configuration scripts and snippets for detecting WebP support:
 
