@@ -1,14 +1,13 @@
-# WebP User-Agent detection
+# WebP with Accept negotiation
 
-A collection of configuration scripts and snippets for detecting WebP support:
+A collection of configuration scripts for serving WebP assets:
 
-- A new request header (`WebP`) is appended to the proxied request
-- WebP header value is either "lossy", or "lossy, lossless"
+- Check if the client advertises "image/webp" in Accept header
+- If WebP is supported, check if the local WebP file is on disk, and serve it
+- If server is configured as proxy, append a "WebP: true" header and forward to backend
+- Append "Vary: Accept" if a WebP asset is served
 
-![WebP Detect](http://origin.igvita.com/posts/13/webp-serverside.png)
-
-Based on above, the application server can customize the HTML of the document to provide WebP optimized pages, or fallback to a different image format. Of course, you don't have to use this for just HTML customization: same logic can be adapted to dynamically serve the image assets themselves.
-
+Above sequence of steps allows transparent negotiation of WebP assets - no need to modify your existing applications. Either pregenerate the WebP files, or serve WebP files dynamically to approriate clients.
 
 ## Getting started
 
@@ -20,10 +19,6 @@ $> varnishd -a :8081 -T localhost:6082 -F -f varnish.vcl
 ```
 
 With the above in place, access the page and look at the request header appended by the server - you will see a new `WebP` header sent to your application server if the browser supports WebP.
-
-### Why two values within the header?
-
-Lossless support (with alpha channel) was added in 2012, and older user-agents do not support it. Newer UA's support both. The header allows you to easily determine whether the current UA supports lossless + alpha channel WebP images.
 
 ### What about server X?
 
