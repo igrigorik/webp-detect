@@ -22,4 +22,6 @@ With the above in place, access the page and look at the request header appended
 
 ### What about server X?
 
-Please send a pull request!
+* See list of included server configurations above.
+* Connect middleware (node.js): https://github.com/msemenistyi/connect-image-optimus
+* ... please send a pull request!
